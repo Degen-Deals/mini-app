@@ -26,7 +26,7 @@ export const DetailedInfoModal = ({ id, product }: Props) => {
 
         writeContract({
             abi: ABI2,
-            address: '0x761d180DFc966E4df48E9938CA785c89e2A868D5',
+            address: `0x${process.env.DEDEALS20!}`,
             functionName: 'approve',
             args: ['0xAA45302106FfAa5D84c9AB05db688F877659fb1B', Number(product.paymentAmount) + 5_000_000_000_000_000_000],
         });
@@ -34,7 +34,7 @@ export const DetailedInfoModal = ({ id, product }: Props) => {
     const handleBuy = () => {
         writeContract({
             abi: ABI1,
-            address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+            address: `0x${process.env.DEDEALS721!}`,
             functionName: 'pay',
             args: [id, '0x']
         });
@@ -43,7 +43,6 @@ export const DetailedInfoModal = ({ id, product }: Props) => {
     return (
         <Modal
             header={<ModalHeader after={<ModalClose>
-                {/* <Icon28Close style={{ color: 'var(--tgui--plain_foreground)' }} /> */}
             </ModalClose>}></ModalHeader>}
             trigger={
                 <CardCell

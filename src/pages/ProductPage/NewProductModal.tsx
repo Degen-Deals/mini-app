@@ -31,7 +31,7 @@ export const NewProductModal = () => {
 
 
     const { data: mintFee } = useReadContract({
-        address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+        address: `0x${process.env.DEDEALS721!}`,
         abi: ABI1,
         functionName: 'calcMintFee',
         args: [1n * 10n ** 18n]
@@ -41,7 +41,7 @@ export const NewProductModal = () => {
     const approveMint = () => {
         writeContract({
             abi: ABI2,
-            address: '0x761d180DFc966E4df48E9938CA785c89e2A868D5',
+            address: `0x${process.env.DEDEALS20!}`,
             functionName: 'approve',
             args: ['0xAA45302106FfAa5D84c9AB05db688F877659fb1B', 1n * 10n ** 18n / 1000n * 5n * BigInt(price)],
         })
@@ -80,10 +80,9 @@ export const NewProductModal = () => {
             try {
                 await axios.post('https://api.imgur.com/3/image', formData, {
                     headers: {
-                        'Authorization': 'Client-ID a70bc7189261a52' // Replace YOUR_CLIENT_ID with the actual Client ID from Imgur
+                        'Authorization': `Client-ID ${process.env.IMGUR}` // Replace YOUR_CLIENT_ID with the actual Client ID from Imgur
                     }
                 }).then((resp) => {
-                    console.log(resp.data.data.link)
 
                     let offerData = {
                         "name": productName,
@@ -92,14 +91,14 @@ export const NewProductModal = () => {
                     }
 
                     let offerHash = JSON.stringify(offerData);
-                    let paymentToken = '0x761d180DFc966E4df48E9938CA785c89e2A868D5';
+                    let paymentToken = `0x${process.env.DEDEALS20}`;
                     let paymentAmount = 1n * 10n ** 18n * BigInt(price);
                     let period = 10_000;
                     let obligee = ZeroAddress;
                     let erc6551Account = ZeroAddress;
 
                     writeContract({
-                        address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+                        address: `0x${process.env.DEDEALS721!}`,
                         abi: ABI1,
                         functionName: 'mint',
                         args: [offerHash, paymentToken, paymentAmount, period, obligee, erc6551Account],

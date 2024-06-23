@@ -47,14 +47,14 @@ export type NFTProduct = {
 }
 export function ListProducts() {
     const { data: nftAmount, isError, isLoading } = useReadContract({
-        address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+        address: `0x${process.env.DEDEALS721!}`,
         abi: ABI1,
         functionName: 'totalDeals',
         args: [],
     });
 
     const { data: dealData } = useReadContract({
-        address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+        address: `0x${process.env.DEDEALS721!}`,
         abi: ABI1,
         functionName: 'getDeals',
         args: [0n, Number(nftAmount) - 1]

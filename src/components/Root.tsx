@@ -8,11 +8,13 @@ import { http, createConfig } from 'wagmi'
 import { walletConnect } from 'wagmi/connectors'
 import { App } from './App';
 import { ErrorBoundary } from './ErrorBoundary';
+import dotenv from 'dotenv';
 
 export const config = createConfig({
+
   chains: [optimismSepolia],
   connectors: [
-    walletConnect({ projectId: 'e327488e2e29ab3746e324fbd69e7b1e' }),
+    walletConnect({ projectId: process.env.WC_PROJECT_ID! }),
   ],
 
   transports: {

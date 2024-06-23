@@ -25,9 +25,9 @@ function ConnectWallet() {
 export const IndexPage: FC = () => {
   const { isConnected, } = useAccount();
   const { address } = useAccount();
-
+  console.log(process.env.DEDEALS721)
   const { data: ismm } = useReadContract({
-    address: '0xAA45302106FfAa5D84c9AB05db688F877659fb1B',
+    address: `0x${process.env.DEDEALS721}`,
     abi: ABI1,
     functionName: 'isMember',
     args: [address]

@@ -6,7 +6,6 @@ import './index.css';
 import React from 'react';
 import { Root } from './Components/Root';
 import { ThirdwebStorage } from '@thirdweb-dev/storage';
-
 // This line of code allows us to safely launch the application even outside
 // the Telegram application. It will also only be applied in development mode, not in
 // production.
@@ -14,8 +13,8 @@ if (import.meta.env.DEV) {
   const initDataRaw = new URLSearchParams([
     ['user', JSON.stringify({
       id: 99281932,
-      first_name: 'Andrew',
-      last_name: 'Rogue',
+      first_name: 'Petro',
+      last_name: 'Yaremenko',
       username: 'rogue',
       language_code: 'en',
       is_premium: true,

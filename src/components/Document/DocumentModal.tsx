@@ -15,9 +15,9 @@ import { defaultLayoutPlugin } from '@react-pdf-viewer/default-layout';
 import '@react-pdf-viewer/default-layout/lib/styles/index.css';
 
 type Props = {
-
     product: NFTProduct
 }
+
 export const DocumentModal = ({ product }: Props) => {
     const pdfURL = 'src/components/Document/test_document.pdf';
     const defaultLayoutPluginInstance = defaultLayoutPlugin();
