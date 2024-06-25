@@ -1,6 +1,6 @@
 import { Section, Cell, Image, List } from '@telegram-apps/telegram-ui';
 import type { FC } from 'react';
-import { useAccount, useReadContract } from 'wagmi'
+import { useAccount, useReadContract, useWriteContract } from 'wagmi'
 import { abi as ABI1 } from '../../Utils/DegenDealsERC721.json';
 
 
@@ -23,6 +23,12 @@ function ConnectWallet() {
 }
 
 export const IndexPage: FC = () => {
+  const {
+    data: hash,
+    error,
+    isPending,
+    writeContract
+  } = useWriteContract();
   const { isConnected, } = useAccount();
   const { address } = useAccount();
   console.log(process.env.DEDEALS721)
@@ -34,7 +40,12 @@ export const IndexPage: FC = () => {
   })
 
   const becomeAMember = () => {
-
+    writeContract({
+      abi: ABI1,
+      address: `0x${process.env.DEDEALS721!}`,
+      functionName: 'becomeMember',
+      args: ['0x'],
+    });
   }
   return (
     <List>
