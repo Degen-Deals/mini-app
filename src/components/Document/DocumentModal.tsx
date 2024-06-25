@@ -31,12 +31,12 @@ export const DocumentModal = ({ product }: Props) => {
                 <Button size="m" style={{ background: '#9149f3', color: '#fbf807', marginRight: '10px' }} >Check Agreement</Button>
             }
         >
-            <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
+            {/* <Worker workerUrl={`https://unpkg.com/pdfjs-dist@${pdfjs.version}/build/pdf.worker.min.js`}>
                 <Viewer
                     fileUrl={pdfURL}
                     plugins={[defaultLayoutPluginInstance]}
                 />
-            </Worker>
+            </Worker> */}
         </Modal >
     )
 }
